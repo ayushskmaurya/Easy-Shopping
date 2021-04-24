@@ -1,0 +1,181 @@
+.rm-shadow:focus {
+	box-shadow: none;
+}
+
+div.header {
+	display: flex;
+	background-color: #0d6efd;
+}
+
+div.sm-header {
+	height: 50px;
+	background-color: #0d6efd;
+}
+
+div.logo {
+	height: 100%;
+	width: 50px;
+	padding: 5px 0px 5px 5px;
+}
+
+img.logo {
+	height: 100%;
+	width: 100%;
+}
+
+div.menu {
+	height: 30px;
+	width: 40px;
+	margin-top: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+button.menu {
+	height: 100%;
+	width: 30px;
+	background-color: #0d6efd;
+	border: none;
+	color: #fff;
+}
+button.menu:hover {
+	background-color: #0c5dec;
+}
+
+svg.menu {
+	margin-top: -2px;
+	margin-left: -3px;
+}
+
+a.site-name {
+	color: #fff;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+div.search {
+	width: calc(100% - 50px - 150px - 162px);
+}
+
+div.sm-search {
+	width: 100%;
+}
+
+input.search {
+	display: inline-block;
+	width: calc(100% - 50px);
+	margin: 7px 0px 0px 5px;
+	border: none;
+}
+
+button.search {
+	width: 35px;
+	padding-top: 0px;
+	padding-left: 8px;
+}
+button.search:hover {
+	background-color: #e6e6e6;
+}
+
+button.login {
+	height: 100%;
+	color: #fff;
+	font-weight: 600;
+}
+button.login:hover {
+	color: #fff;
+	background-color: #0c5dec;
+}
+
+@media (min-width: 768px) {
+	div.header {
+		height: 50px;
+	}
+	div.sm-header {
+		display: none;
+	}
+	div.menu {
+		display: none;
+	}
+	div.site-name {
+		padding-top: 8px;
+		width: 150px;
+	}
+	a.site-name {
+		font-size: 1.3rem;
+	}
+	button.search {
+		margin-top: -4px
+	}
+	div.user {
+		width: 162px;
+	}
+}
+
+@media (max-width: 767px) {
+	div.header {
+		height: 40px;
+	}
+	div.logo {
+		display: none;
+	}
+	div.site-name {
+		padding-top: 5px;
+		width: 145px;
+	}
+	a.site-name {
+		font-size: 1.2rem;
+	}
+	div.search {
+		display: none;
+	}
+	button.search {
+		margin-top: -2px;
+	}
+	div.user {
+		width: 60px;
+		margin-left: calc(100% - 40px - 145px - 50px);
+	}
+	button.login {
+		width: 50px;
+		padding: 0px 0px 2px 0px;
+	}
+	button.reg {
+		display: none;
+	}
+}
+
+div.menu-dialog {
+	width: 75%;
+}
+
+div.reg {
+	padding: 10px 0px 10px 15px;
+}
+
+button.product {
+	width: 100%;
+	border: none;
+	text-align: left;
+	background-color: #fff;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+button.product:hover {
+	background-color: #f0f0f0;
+}
+
+div.footer {
+	background-color: #f0f0f0;
+	padding: 20px;
+	text-align: center;
+}
+
+a.footer {
+	text-decoration: none;
+	color: #000;
+	font-weight: 500;
+}
+a.footer:hover {
+	font-size: 1.03rem;
+}

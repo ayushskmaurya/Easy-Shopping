@@ -9,12 +9,86 @@
 	<!-- Bootstrap CSS-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	<!-- CSS -->
+	<link rel='stylesheet' type='text/css' href="{% static 'css/style.css' %}">
 	{% block css %} {% endblock %}
 	<!-- Favicon -->
 	<link rel="icon" href="{% static 'logo/logo.ico' %}" type="image/ico">
 </head>
 <body>
+	<!-- Header Division -->
+	<div class="header">
+		<!-- Logo -->
+		<div class="logo">
+			<img class="logo" src="{% static 'logo/logo.jpg' %}" alt="">
+		</div>
+
+		<!-- Menu -->
+		<div class="menu">
+			<button class="menu" data-bs-toggle="modal" data-bs-target="#menuModal">
+				<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-list menu" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+				</svg>
+			</button>
+		</div>
+		
+		<!-- Site name -->
+		<div class="site-name">
+			<a class="site-name" href="/">Easy Shopping</a>
+		</div>
+
+		<!-- Search -->
+		<div class="search">
+			<input type="text" class="form-control search rm-shadow" placeholder="Search">
+			<button type="button" class="btn btn-light search rm-shadow">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+					<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+				</svg>
+			</button>
+		</div>
+
+		<!-- Login / Register -->
+		<div class="user">
+			<button type="button" class="btn login rm-shadow">Login</button>
+			<button type="button" class="btn btn-outline-light reg rm-shadow">Register</button>
+		</div>
+	</div>
+
+	<div class="sm-header">
+		<!-- Search -->
+		<div class="sm-search">
+			<input type="text" class="form-control search rm-shadow" placeholder="Search">
+			<button type="button" class="btn btn-light search rm-shadow">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+					<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+				</svg>
+			</button>
+		</div>
+	</div>
+
+	<!-- Menu Modal -->
+	<div class="modal fade" id="menuModal" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog modal-fullscreen modal-dialog-scrollable menu-dialog">
+			<div class="modal-content">
+				<div class="modal-header reg">
+					<button type="button" class="btn btn-primary rm-shadow">Register</button>
+				</div>
+				<div class="modal-body">
+					<h5>Products</h5>
+					<button type="button" class="product">Product 1</button>
+					<button type="button" class="product">Product 2</button>
+					<button type="button" class="product">Product 3</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	{% block body %} {% endblock %}
+
+	<!-- Footer -->
+	<div class="footer">
+		<a href="https://github.com/ayushskmaurya" target="_blank" class="footer">Developed by: Ayushkumar Maurya</a>
+	</div>
+
 	<!-- Bootstrap Script -->
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
