@@ -3,9 +3,9 @@ Django based E-commerce Website
 
 * Easy Shopping will be reliable and easy-to-use E-commerce website.
 * This coherent application is being created using Django web framework.
-* It will be responsive website, so user can buy product using any device.
+* It will be responsive website, so user can buy product using any device.<br /><br />
 
-* To add new product or category browse `127.0.0.1/add_product`.
+* To add new product or category browse `127.0.0.1:8000/add_product`.
 * Login with Django admin site credentials.
 * Product and category can be edited or removed using Django admin site.
 
