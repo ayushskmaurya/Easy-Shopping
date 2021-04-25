@@ -23,7 +23,7 @@ img.logo {
 	width: 100%;
 }
 
-div.menu {
+div.menu-dropdown {
 	height: 30px;
 	width: 40px;
 	margin-top: 5px;
@@ -31,18 +31,18 @@ div.menu {
 	padding-right: 5px;
 }
 
-button.menu {
+button.menu-dropdown {
 	height: 100%;
 	width: 30px;
 	background-color: #0d6efd;
 	border: none;
 	color: #fff;
 }
-button.menu:hover {
+button.menu-dropdown:hover {
 	background-color: #0c5dec;
 }
 
-svg.menu {
+svg.menu-dropdown {
 	margin-top: -2px;
 	margin-left: -3px;
 }
@@ -94,7 +94,7 @@ button.login:hover {
 	div.sm-header {
 		display: none;
 	}
-	div.menu {
+	div.menu-dropdown {
 		display: none;
 	}
 	div.site-name {
@@ -143,9 +143,31 @@ button.login:hover {
 	button.reg {
 		display: none;
 	}
+	div.menu {
+		display: none;
+	}
 }
 
-div.menu-dialog {
+div.menu {
+	height: 36px;
+	background-color: #3c78ff;
+	padding-left: 10px;
+}
+
+button.opt {
+	border: none;
+	height: 30px;
+	background-color: #3c78ff;
+	color: #fff;
+	margin-top: 3px;
+	font-weight: 500;
+}
+button.opt:hover {
+	border: 1px solid #fff;
+	background-color: #0d6efd;
+}
+
+div.modal-menu {
 	width: 75%;
 }
 
@@ -153,7 +175,7 @@ div.reg {
 	padding: 10px 0px 10px 15px;
 }
 
-button.product {
+button.option {
 	width: 100%;
 	border: none;
 	text-align: left;
@@ -161,7 +183,7 @@ button.product {
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
-button.product:hover {
+button.option:hover {
 	background-color: #f0f0f0;
 }
 

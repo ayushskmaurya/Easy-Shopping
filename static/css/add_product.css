@@ -1,0 +1,67 @@
+.rm-shadow:focus {
+	box-shadow: none;
+}
+
+.input-border:focus {
+	border: 1px solid #000;
+}
+
+div.login {
+	margin: auto;
+	margin-top: 50px;
+	margin-bottom: 30px;
+	padding: 10px;
+	border: 1px solid #6c757d;
+	border-radius: 15px;
+}
+
+@media (min-width: 576px) {
+	div.login {
+		width: 450px;
+	}
+}
+
+@media (max-width: 575px) {
+	div.login {
+		width: 95%;
+	}
+}
+
+div.logout {
+	text-align: right;
+	margin: 15px;
+}
+
+span.req {
+	color: #dc3545;
+	font-weight: 500;
+}
+
+div.add {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 50px;
+}
+
+div.add-product, div.add-category {
+	margin: 50px 15px 0px 15px;
+	padding: 10px;
+	border: 1px solid #6c757d;
+	border-radius: 15px;
+}
+
+div.add-category {
+	height: fit-content;
+}
+
+@media (min-width: 768px) {
+	div.add-product, div.add-category {
+		width: calc(50% - 30px);
+	}
+}
+
+@media (max-width: 767px) {
+	div.add-product, div.add-category {
+		width: 100%;
+	}
+}

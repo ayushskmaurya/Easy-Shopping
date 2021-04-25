@@ -1,4 +1,8 @@
 __pycache__
+static/categories_images/*
+!static/categories_images/README.md
+static/products_images/*
+!static/products_images/README.md
 db.sqlite3
 
 static/other_files/

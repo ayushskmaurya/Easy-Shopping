@@ -5,13 +5,22 @@ Django based E-commerce Website
 * This coherent application is being created using Django web framework.
 * It will be responsive website, so user can buy product using any device.
 
+* To add new product or category browse `127.0.0.1/add_product`.
+* Login with Django admin site credentials.
+* Product and category can be edited or removed using Django admin site.
+
 ### Instructions:
 1. Install Django using the following command:
 	```
 	pip install Django
 	```
 
-2. To migrate the database, execute:
+2. Install Pillow (PIL fork) using the following command:
+	```
+	pip install Pillow
+	```
+
+3. To migrate the database, execute:
 	```
 	python manage.py makemigrations
 	```
@@ -19,12 +28,12 @@ Django based E-commerce Website
 	python manage.py migrate
 	```
 
-3. To use Admin Panel create superuser:
+4. Create a user to login to the admin site:
 	```
 	python manage.py createsuperuser
 	```
 
-4. To run the program in local server:
+5. To run the program in local server:
 	```
 	python manage.py runserver
 	```

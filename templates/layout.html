@@ -22,10 +22,10 @@
 			<img class="logo" src="{% static 'logo/logo.jpg' %}" alt="">
 		</div>
 
-		<!-- Menu -->
-		<div class="menu">
-			<button class="menu" data-bs-toggle="modal" data-bs-target="#menuModal">
-				<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-list menu" viewBox="0 0 16 16">
+		<!-- Menu Dropdown-->
+		<div class="menu-dropdown">
+			<button class="menu-dropdown" data-bs-toggle="modal" data-bs-target="#menuModal">
+				<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-list menu-dropdown" viewBox="0 0 16 16">
 					<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
 				</svg>
 			</button>
@@ -65,18 +65,24 @@
 		</div>
 	</div>
 
+	<!-- Menu -->
+	<div class="menu">
+		<button class="opt">Cart</button>
+		<button class="opt">Wishlist</button>
+		<button class="opt">Orders</button>
+	</div>
+	
 	<!-- Menu Modal -->
 	<div class="modal fade" id="menuModal" tabindex="-1" aria-hidden="true">
-		<div class="modal-dialog modal-fullscreen modal-dialog-scrollable menu-dialog">
+		<div class="modal-dialog modal-fullscreen modal-dialog-scrollable modal-menu">
 			<div class="modal-content">
 				<div class="modal-header reg">
 					<button type="button" class="btn btn-primary rm-shadow">Register</button>
 				</div>
 				<div class="modal-body">
-					<h5>Products</h5>
-					<button type="button" class="product">Product 1</button>
-					<button type="button" class="product">Product 2</button>
-					<button type="button" class="product">Product 3</button>
+					<button type="button" class="option">Cart</button>
+					<button type="button" class="option">Wishlist</button>
+					<button type="button" class="option">Orders</button>
 				</div>
 			</div>
 		</div>

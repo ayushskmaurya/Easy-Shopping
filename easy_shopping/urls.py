@@ -18,7 +18,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-	path('', include('online_shop.urls'))
+	path('', include('online_shop.urls')),
+	path('add_product/', include('add_product.urls'))
 ]
 
 admin.site.site_header = "Easy Shopping"
