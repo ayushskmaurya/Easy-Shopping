@@ -13,11 +13,21 @@
 			<div class="product-img">
 				<img class="product-img" src="{% static 'products_images/' %}{{ product.id }}.jpg" alt="{{ product.name }}">
 			</div>
+
 			<div class="cart">
-				<button type="button" class="btn btn-danger rm-shadow">Add to Cart</button>
+				{% if product.cart %}
+				<button type="button" class="btn btn-danger rm-shadow" disabled>Added to Cart</button>
+				{% else %}
+				<button type="button" onclick="add_to_cart('{{ product.id }}');" class="btn btn-danger rm-shadow">Add to Cart</button>
+				{% endif %}
 			</div>
+
 			<div class="wishlist">
-				<button type="button" class="btn btn-light wishlist rm-shadow">Add to Wishlist</button>
+				{% if product.wishlist %}
+				<button type="button" class="btn btn-light wishlist rm-shadow" disabled>Added to Wishlist</button>
+				{% else %}
+				<button type="button" onclick="add_to_wishlist('{{ product.id }}');" class="btn btn-light wishlist rm-shadow">Add to Wishlist</button>
+				{% endif %}
 			</div>
 		</div>
 

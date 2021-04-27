@@ -37,11 +37,11 @@
 		</div>
 
 		<!-- Search -->
-			{% if userid %}
-			<div class="search-s">
-			{% else %}
-			<div class="search-l">
-			{% endif %}
+		{% if userid %}
+		<div class="search-s">
+		{% else %}
+		<div class="search-l">
+		{% endif %}
 		
 			<input type="text" id="query-0" class="form-control search rm-shadow" placeholder="Search">
 			<button type="button" class="btn btn-light search rm-shadow" onclick="search('0');">
@@ -59,7 +59,7 @@
 		{% else %}
 		<!-- Login / Register -->
 		<div class="user-l">
-			<button type="button" class="btn login rm-shadow" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+			<button type="button" class="btn login rm-shadow" id="login" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
 			<button type="button" class="btn btn-outline-light reg rm-shadow" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
 		</div>
 		{% endif %}
@@ -197,6 +197,7 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<!-- Script -->
 	{% csrf_token %}
+	<span id="is-logged-in" style="display: none;">{% if userid %}1{% else %}0{% endif %}</span>
 	<script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

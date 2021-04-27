@@ -29,3 +29,13 @@ class OnlineShopUser(models.Model):
 
 	def __str__(self):
 		return self.name
+
+
+class Cart(models.Model):
+	product_id = models.ForeignKey(Product, on_delete=models.CASCADE, null=False)
+	user_id = models.ForeignKey(OnlineShopUser, on_delete=models.CASCADE, null=False)
+
+
+class Wishlist(models.Model):
+	product_id = models.ForeignKey(Product, on_delete=models.CASCADE, null=False)
+	user_id = models.ForeignKey(OnlineShopUser, on_delete=models.CASCADE, null=False)

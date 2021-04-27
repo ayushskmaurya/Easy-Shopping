@@ -4,6 +4,30 @@ function search(n) {
 		location.href = "/search/" + query;
 }
 
+// Checking wether user is logged in.
+function is_logged_in() {
+	let isLoggedIn = document.getElementById("is-logged-in").innerHTML;
+	if(isLoggedIn == "1")
+		return true;
+	return false;
+}
+
+// Adding product to the cart.
+function add_to_cart(product_id) {
+	if(is_logged_in())
+		location.href = "/add_to_cart/" + product_id;
+	else
+		document.getElementById("login").click();
+}
+
+// Adding product to the wishlist.
+function add_to_wishlist(product_id) {
+	if(is_logged_in())
+		location.href = "/add_to_wishlist/" + product_id;
+	else
+		document.getElementById("login").click();
+}
+
 // Show error message if occured
 function show_error_msg(div_id, msg_id, msg) {
 	document.getElementById(msg_id).innerHTML = msg;
