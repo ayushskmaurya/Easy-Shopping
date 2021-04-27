@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+<!-- CSS -->
+{% block css %}
+<link rel='stylesheet' type='text/css' href="{% static 'css/product.css' %}">
+{% endblock %}
+
+{% block body %}
+	{% if product %}
+	<div class="product">
+		<div class="info-col1">
+			<div class="product-img">
+				<img class="product-img" src="{% static 'products_images/' %}{{ product.id }}.jpg" alt="{{ product.name }}">
+			</div>
+			<div class="cart">
+				<button type="button" class="btn btn-danger rm-shadow">Add to Cart</button>
+			</div>
+			<div class="wishlist">
+				<button type="button" class="btn btn-light wishlist rm-shadow">Add to Wishlist</button>
+			</div>
+		</div>
+
+		<div class="info-col2">
+			<h4 class="product-name">{{ product.name }}</h4>
+			
+			<span>Price: </span>
+			<span class="fprice">₹{{ product.final_price }}</span>
+			{% if product.discount != 0 %}
+			&nbsp;&nbsp;<span class="price">₹{{ product.price }}</span>
+			<br><span>You save: </span>
+			<span class="discount">₹{{ product.discount_amt }} &nbsp;({{ product.discount }}%)</span>
+			{% endif %}
+			
+			<p class="info">
+				<span class="hinfo">Category: </span>
+				<span>{{ product.category_id }}</span>
+			</p>
+			<p class="info">
+				<span class="hinfo">Description </span>
+				<br><span>{{ product.desc }}</span>
+			</p>
+		</div>
+	</div>
+
+	{% else %}
+	<div class="alert alert-danger no-result" role="alert">
+		Sorry! No results found.
+	</div>
+	{% endif %}
+{% endblock %}

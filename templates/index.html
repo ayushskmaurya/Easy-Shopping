@@ -6,9 +6,22 @@
 <link rel='stylesheet' type='text/css' href="{% static 'css/main.css' %}">
 {% endblock %}
 
-{% block body %} {% endblock %}
+{% block body %}
+	{% if categories|length != 0 %}
+	<div class="categories">
+		{% for category in categories %}
+		<div class="category">
+			<button class="category" onclick="location.href = 'category/{{ category.id }}';">
+				<img class="category-img" src="{% static 'categories_images/' %}{{ category.id }}.jpg" alt="{{ category.name }}">
+				<h6 class="category-name">{{ category.name }}</h6>
+			</button>
+		</div>
+		{% endfor %}
+	</div>
 
-<!-- Script -->
-{% block script %}
-<script src="{% static 'js/main.js' %}"></script>
+	{% else %}
+	<div class="alert alert-secondary no-result" role="alert">
+		No categories found!
+	</div>
+	{% endif %}
 {% endblock %}

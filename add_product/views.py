@@ -21,7 +21,7 @@ def login(request):
 	try:
 		if request.session['username']:
 			data['is_logged_in'] = True
-			data['categories'] = Category.objects.all()
+			data['categories'] = Category.objects.all().order_by('name')
 	except KeyError:
 		data['is_logged_in'] = False
 	try:

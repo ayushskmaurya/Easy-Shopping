@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+<!-- CSS -->
+{% block css %}
+<link rel='stylesheet' type='text/css' href="{% static 'css/products.css' %}">
+{% endblock %}
+
+{% block body %}
+	{% if products|length != 0 %}
+	<div class="products">
+		{% for product in products %}
+		<div class="product">
+			<button class="product" onclick="location.href = '/product/{{ product.id }}';">
+				<img class="product-img" src="{% static 'products_images/' %}{{ product.id }}.jpg" alt="{{ product.name }}">
+				<h5 class="product-name">{{ product.name }}</h5>
+				<span class="fprice">₹{{ product.final_price }} &nbsp;</span>
+				{% if product.discount != 0 %}
+				<span class="price">₹{{ product.price }}</span>
+				{% endif %}
+			</button>
+		</div>
+		{% endfor %}
+	</div>
+
+	{% else %}
+	<div class="alert alert-danger no-result" role="alert">
+		Sorry! No results found.
+	</div>
+	{% endif %}
+{% endblock %}
