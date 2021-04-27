@@ -1,12 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.contrib.auth.hashers import make_password, check_password
 from itertools import chain
-from .models import Category, Product
+from .models import Category, Product, OnlineShopUser
 
 # Create your views here.
 
 def index(request):
-	categories = Category.objects.all().order_by('name')
-	return render(request, 'index.html', {'categories': categories})
+	data = {}
+	try:
+		if request.session['userid']:
+			data['userid'] = request.session['userid']
+			data['uname'] = request.session['user_name']
+	except KeyError:
+		pass
+	data['categories'] = Category.objects.all().order_by('name')
+	return render(request, 'index.html', data)
 	
 
 # Retrieving products based on searched query.
@@ -46,3 +55,55 @@ def product(request, product_id):
 	except:
 		pass
 	return render(request, 'product.html', data)
+
+
+# Verifying the existence of user and verifying password. 
+def verify_user(request):
+	if request.method == 'POST':
+		email = request.POST['email']
+		pwd = request.POST['pwd']
+
+		try:
+			user = OnlineShopUser.objects.get(email=email)
+			if check_password(pwd, user.password):
+				request.session['userid'] = user.id
+				request.session['user_name'] = user.name
+				return HttpResponse("1")
+			else:
+				return HttpResponse("You have entered incorrect password.")
+		except:
+			return HttpResponse("User with email {0} doesn't exist.".format(email))
+
+
+# Validating non-existence of user with email or mobile no given during registration. 
+def validate_user(request):
+	if request.method == 'POST':
+		name = request.POST['name']
+		email = request.POST['email']
+		mob = request.POST['mob']
+		pwd = request.POST['pwd']
+		
+		try:
+			user = OnlineShopUser.objects.get(email=email)
+			return HttpResponse("User with email {0} already exists.".format(email))
+		except:
+			pass
+		try:
+			user = OnlineShopUser.objects.get(mobile=mob)
+			return HttpResponse("User with mobile no {0} already exists.".format(mob))
+		except:
+			user = OnlineShopUser(name=name, email=email, mobile=mob, password=make_password(pwd))
+			user.save()
+			request.session['userid'] = user.id
+			request.session['user_name'] = user.name
+			return HttpResponse("1")
+
+
+# Signout
+def signout(request):
+	try:
+		del request.session['userid']
+		del request.session['user_name']
+	except KeyError:
+		pass
+	return redirect("/")

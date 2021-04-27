@@ -2,6 +2,10 @@
 	box-shadow: none;
 }
 
+.input-border:focus {
+	border: 1px solid #000;
+}
+
 div.header {
 	display: flex;
 	background-color: #0d6efd;
@@ -53,8 +57,11 @@ a.site-name {
 	font-weight: bold;
 }
 
-div.search {
+div.search-l {
 	width: calc(100% - 50px - 150px - 162px);
+}
+div.search-s {
+	width: calc(100% - 50px - 150px - 90px);
 }
 
 div.sm-search {
@@ -77,12 +84,12 @@ button.search:hover {
 	background-color: #e6e6e6;
 }
 
-button.login {
+button.login, button.signout {
 	height: 100%;
 	color: #fff;
 	font-weight: 600;
 }
-button.login:hover {
+button.login:hover, button.signout:hover {
 	color: #fff;
 	background-color: #0c5dec;
 }
@@ -107,8 +114,14 @@ button.login:hover {
 	button.search {
 		margin-top: -4px
 	}
-	div.user {
+	div.user-l {
 		width: 162px;
+	}
+	div.user-s {
+		width: 90px;
+	}
+	div.menu {
+		display: flex;
 	}
 }
 
@@ -126,18 +139,26 @@ button.login:hover {
 	a.site-name {
 		font-size: 1.2rem;
 	}
-	div.search {
+	div.search-l, div.search-s {
 		display: none;
 	}
 	button.search {
 		margin-top: -2px;
 	}
-	div.user {
+	div.user-l {
 		width: 60px;
 		margin-left: calc(100% - 40px - 145px - 50px);
 	}
+	div.user-s {
+		width: 80px;
+		margin-left: calc(100% - 40px - 145px - 70px);
+	}
 	button.login {
 		width: 50px;
+		padding: 0px 0px 2px 0px;
+	}
+	button.signout {
+		width: 70px;
 		padding: 0px 0px 2px 0px;
 	}
 	button.reg {
@@ -154,6 +175,10 @@ div.menu {
 	padding-left: 10px;
 }
 
+div.opts {
+	width: 200px;
+}
+
 button.opt {
 	border: none;
 	height: 30px;
@@ -165,6 +190,18 @@ button.opt {
 button.opt:hover {
 	border: 1px solid #fff;
 	background-color: #0d6efd;
+}
+
+div.name-s {
+	width: 250px;
+	margin-left: calc(100% - 200px - 250px - 10px);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: right;
+	padding-top: 5px;
+	color: #fff;
+	font-weight: 500;
 }
 
 div.modal-menu {

@@ -37,7 +37,12 @@
 		</div>
 
 		<!-- Search -->
-		<div class="search">
+			{% if userid %}
+			<div class="search-s">
+			{% else %}
+			<div class="search-l">
+			{% endif %}
+		
 			<input type="text" id="query-0" class="form-control search rm-shadow" placeholder="Search">
 			<button type="button" class="btn btn-light search rm-shadow" onclick="search('0');">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -46,11 +51,18 @@
 			</button>
 		</div>
 
-		<!-- Login / Register -->
-		<div class="user">
-			<button type="button" class="btn login rm-shadow">Login</button>
-			<button type="button" class="btn btn-outline-light reg rm-shadow">Register</button>
+		{% if userid %}
+		<!-- Signout -->
+		<div class="user-s">
+			<button type="button" class="btn signout rm-shadow" onclick="location.href = '/signout';">Signout</button>
 		</div>
+		{% else %}
+		<!-- Login / Register -->
+		<div class="user-l">
+			<button type="button" class="btn login rm-shadow" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+			<button type="button" class="btn btn-outline-light reg rm-shadow" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+		</div>
+		{% endif %}
 	</div>
 
 	<div class="sm-header">
@@ -67,9 +79,14 @@
 
 	<!-- Menu -->
 	<div class="menu">
-		<button class="opt">Cart</button>
-		<button class="opt">Wishlist</button>
-		<button class="opt">Orders</button>
+		<div class="opts">
+			<button class="opt">Cart</button>
+			<button class="opt">Wishlist</button>
+			<button class="opt">Orders</button>
+		</div>
+		{% if userid %}
+		<div class="name-s">Welcome {{ uname }}</div>
+		{% endif %}
 	</div>
 	
 	<!-- Menu Modal -->
@@ -77,7 +94,11 @@
 		<div class="modal-dialog modal-fullscreen modal-dialog-scrollable modal-menu">
 			<div class="modal-content">
 				<div class="modal-header reg">
-					<button type="button" class="btn btn-primary rm-shadow">Register</button>
+					{% if userid %}
+					<h6>Welcome {{ uname }}</h6>
+					{% else %}
+					<button type="button" class="btn btn-primary rm-shadow" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+					{% endif %}
 				</div>
 				<div class="modal-body">
 					<button type="button" class="option">Cart</button>
@@ -90,6 +111,80 @@
 
 	{% block body %} {% endblock %}
 
+	<!-- Login Modal -->
+	<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-scrollable">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="loginModalLabel">Login</h5>
+					<button type="button" class="btn-close rm-shadow" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-danger alert-dismissible fade show" id="login-error" role="alert" style="display: none;">
+						<span id="login-error-msg"></span>
+						<button type="button" class="btn-close rm-shadow" onclick="hide_error_msg('login-error', 'login-error-msg');"></button>
+					</div>
+
+					<div class="mb-3">
+						<label for="login-email" class="form-label">Email:</label>
+						<input type="email" class="form-control rm-shadow input-border" id="login-email" name="login-email" placeholder="Enter email">
+					</div>
+					<div class="mb-3">
+						<label for="login-pwd" class="form-label">Password:</label>
+						<input type="password" class="form-control rm-shadow input-border" id="login-pwd" name="login-pwd" placeholder="Enter password">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary rm-shadow" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary rm-shadow" onclick="login('login-error', 'login-error-msg');">Login</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Register Modal -->
+	<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-scrollable">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="registerModalLabel">Register</h5>
+					<button type="button" class="btn-close rm-shadow" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-danger alert-dismissible fade show" id="reg-error" role="alert" style="display: none;">
+						<span id="reg-error-msg"></span>
+						<button type="button" class="btn-close rm-shadow" onclick="hide_error_msg('reg-error', 'reg-error-msg');"></button>
+					</div>
+
+					<div class="mb-3">
+						<label for="reg-name" class="form-label">Name:</label>
+						<input type="text" class="form-control rm-shadow input-border" id="reg-name" name="reg-name" placeholder="Enter name">
+					</div>
+					<div class="mb-3">
+						<label for="reg-email" class="form-label">Email:</label>
+						<input type="email" class="form-control rm-shadow input-border" id="reg-email" name="reg-email" placeholder="Enter email">
+					</div>
+					<div class="mb-3">
+						<label for="reg-mob" class="form-label">Mobile:</label>
+						<input type="text" class="form-control rm-shadow input-border" id="reg-mob" name="reg-mob" placeholder="Enter mobile no.">
+					</div>
+					<div class="mb-3">
+						<label for="reg-pwd" class="form-label">Password:</label>
+						<input type="password" class="form-control rm-shadow input-border" id="reg-pwd" name="reg-pwd" placeholder="Enter password">
+					</div>
+					<div class="mb-3">
+						<label for="reg-cpwd" class="form-label">Confirm Password:</label>
+						<input type="password" class="form-control rm-shadow input-border" id="reg-cpwd" name="reg-cpwd" placeholder="Enter password again">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary rm-shadow" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary rm-shadow" onclick="register('reg-error', 'reg-error-msg');">Register</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- Footer -->
 	<div class="footer">
 		<a href="https://github.com/ayushskmaurya" target="_blank" class="footer">Developed by: Ayushkumar Maurya</a>
@@ -101,6 +196,7 @@
 	<!-- jQuery Script -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<!-- Script -->
+	{% csrf_token %}
 	<script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
