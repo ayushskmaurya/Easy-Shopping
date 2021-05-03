@@ -91,7 +91,7 @@ def product(request, product_id):
 	return render(request, 'product.html', data)
 
 
-# Retrieving products in cart.
+# Retrieving products present in cart.
 def cart(request):
 	if is_logged_in(request):
 		data = logged_in_info(request)
@@ -164,6 +164,18 @@ def checkout(request):
 	return redirect("/")
 
 
+# Retrieving products present in wishlist.
+def wishlist(request):
+	if is_logged_in(request):
+		data = logged_in_info(request)
+		data['wishlist'] = Wishlist.objects.filter(user_id=request.session['userid'])
+		for obj in data['wishlist']:
+			product = obj.product_id
+			product.final_price = product.price - ((product.discount * product.price) / 100)
+		return render(request, 'wishlist.html', data)
+	return redirect("/")
+
+
 # Adding product to the wishlist.
 def add_to_wishlist(request, product_id):
 	try:
@@ -175,6 +187,19 @@ def add_to_wishlist(request, product_id):
 	except:
 		pass
 	return redirect("/product/{0}".format(product_id))
+
+
+# Removing product from the wishlist.
+def remove_from_wishlist(request, product_id):
+	try:
+		product = Product.objects.get(pk=product_id)
+		user = OnlineShopUser.objects.get(pk=request.session['userid'])
+		wishlist_obj = Wishlist.objects.filter(product_id=product.id, user_id=request.session['userid'])
+		if wishlist_obj.exists():
+			wishlist_obj.delete()
+	except:
+		pass
+	return redirect("/wishlist")
 
 
 # Verifying the existence of user and verifying password. 

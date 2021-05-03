@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+<!-- CSS -->
+{% block css %}
+<link rel='stylesheet' type='text/css' href="{% static 'css/wishlist.css' %}">
+{% endblock %}
+
+{% block body %}
+	{% if wishlist|length != 0 %}
+	<div class="products">
+		{% for product in wishlist %}
+		<div class="product">
+			<button class="product" onclick="location.href = '/product/{{ product.product_id.id }}';">
+				<img class="product-img" src="{% static 'products_images/' %}{{ product.product_id.id }}.jpg" alt="{{ product.product_id.name }}">
+				<h5 class="product-name">{{ product.product_id.name }}</h5>
+				<span class="fprice">₹{{ product.product_id.final_price }} &nbsp;</span>
+				{% if product.product_id.discount != 0 %}
+				<span class="price">₹{{ product.product_id.price }}</span>
+				{% endif %}
+				<br><a href="/remove_from_wishlist/{{ product.product_id.id }}">Remove</a>
+			</button>
+		</div>
+		{% endfor %}
+	</div>
+
+	{% else %}
+	<div class="alert alert-secondary no-result" role="alert">
+		No products found in Wishlist.
+	</div>
+	{% endif %}
+{% endblock %}

@@ -80,8 +80,9 @@
 	<!-- Menu -->
 	<div class="menu">
 		<div class="opts">
+			<button type="button" onclick="location.href = '/';" class="opt">Home</button>
 			<button type="button" onclick="redirect_if_logged_in('/cart');" class="opt">Cart</button>
-			<button type="button" class="opt">Wishlist</button>
+			<button type="button" onclick="redirect_if_logged_in('/wishlist');" class="opt">Wishlist</button>
 			<button type="button" class="opt">Orders</button>
 		</div>
 		{% if userid %}
@@ -101,8 +102,9 @@
 					{% endif %}
 				</div>
 				<div class="modal-body">
+					<button type="button" onclick="location.href = '/';" class="option">Home</button>
 					<button type="button" onclick="redirect_if_logged_in('/cart');" class="option">Cart</button>
-					<button type="button" class="option">Wishlist</button>
+					<button type="button" onclick="redirect_if_logged_in('/wishlist');" class="option">Wishlist</button>
 					<button type="button" class="option">Orders</button>
 				</div>
 			</div>

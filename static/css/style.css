@@ -176,7 +176,7 @@ div.menu {
 }
 
 div.opts {
-	width: 200px;
+	width: 255px;
 }
 
 button.opt {
@@ -194,7 +194,7 @@ button.opt:hover {
 
 div.name-s {
 	width: 250px;
-	margin-left: calc(100% - 200px - 250px - 10px);
+	margin-left: calc(100% - 255px - 250px - 10px);
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
