@@ -83,7 +83,7 @@
 			<button type="button" onclick="location.href = '/';" class="opt">Home</button>
 			<button type="button" onclick="redirect_if_logged_in('/cart');" class="opt">Cart</button>
 			<button type="button" onclick="redirect_if_logged_in('/wishlist');" class="opt">Wishlist</button>
-			<button type="button" class="opt">Orders</button>
+			<button type="button" onclick="redirect_if_logged_in('/orders');" class="opt">Orders</button>
 		</div>
 		{% if userid %}
 		<div class="name-s">Welcome {{ uname }}</div>
@@ -105,7 +105,7 @@
 					<button type="button" onclick="location.href = '/';" class="option">Home</button>
 					<button type="button" onclick="redirect_if_logged_in('/cart');" class="option">Cart</button>
 					<button type="button" onclick="redirect_if_logged_in('/wishlist');" class="option">Wishlist</button>
-					<button type="button" class="option">Orders</button>
+					<button type="button" onclick="redirect_if_logged_in('/orders');" class="option">Orders</button>
 				</div>
 			</div>
 		</div>

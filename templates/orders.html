@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+<!-- CSS -->
+{% block css %}
+<link rel='stylesheet' type='text/css' href="{% static 'css/orders.css' %}">
+{% endblock %}
+
+{% block body %}
+	{% if orders|length != 0 %}
+	<div class="orders">
+		<h4 class="orders">Your Orders</h4>
+		{% for product in orders %}
+		<hr>
+		<h5 class="product-name">{{ product.product_name }}</h5>
+		<span class="info">Price: </span>
+		<span class="fprice">₹{{ product.price }}</span>
+		<p class="add">
+			<span class="info">Address:</span>
+			<br><span class="add">{{ product.address }}</span>
+		</p>
+		{% endfor %}
+	</div>
+
+	{% else %}
+	<div class="alert alert-secondary no-result" role="alert">
+		You have not ordered anything yet.
+	</div>
+	{% endif %}
+{% endblock %}

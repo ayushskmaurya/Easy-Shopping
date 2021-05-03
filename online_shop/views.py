@@ -202,6 +202,15 @@ def remove_from_wishlist(request, product_id):
 	return redirect("/wishlist")
 
 
+# Retrieving ordered products.
+def orders(request):
+	if is_logged_in(request):
+		data = logged_in_info(request)
+		data['orders'] = Order.objects.filter(user_id=request.session['userid'])
+		return render(request, 'orders.html', data)
+	return redirect("/")
+
+
 # Verifying the existence of user and verifying password. 
 def verify_user(request):
 	if request.method == 'POST':

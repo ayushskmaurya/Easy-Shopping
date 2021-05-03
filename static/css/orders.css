@@ -1,0 +1,48 @@
+div.orders {
+	margin: 30px auto 30px auto;
+	padding: 10px;
+	border: 1px solid #6c757d;
+	border-radius: 10px;
+}
+
+@media (min-width: 768px) {
+	div.orders {
+		width: 740px;
+	}
+}
+@media (max-width: 767px) {
+	div.orders {
+		width: 95%;
+	}
+}
+
+h4.orders {
+	margin-top: 5px;
+	text-align: center;
+}
+
+h5.product-name, p.add {
+	margin-bottom: 10px;
+	text-align: justify;
+}
+
+span.info {
+	color: #808080;
+	text-transform: uppercase;
+	font-weight: 500;
+}
+
+span.fprice {
+	font-weight: 500;
+	font-size: 1.1rem;
+}
+
+span.add {
+	font-weight: 500;
+}
+
+div.no-result {
+	width: calc(100% - 30px);
+	font-weight: 500;
+	margin: 30px auto 30px auto;
+}
