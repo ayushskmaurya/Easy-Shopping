@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+<!-- CSS -->
+{% block css %}
+<link rel='stylesheet' type='text/css' href="{% static 'css/cart.css' %}">
+{% endblock %}
+
+{% block body %}
+	{% if cart|length != 0 %}
+	<h5 class="hcart">Your Cart</h5>
+	<div class="cart">
+		{% for product in cart %}
+		<div class="product">
+			<div class="product-img">
+				<img class="product-img" src="{% static 'products_images/' %}{{ product.product_id.id }}.jpg" alt="{{ product.product_id.name }}">
+			</div>
+
+			<div class="product-info">
+				<h5 class="product-name"><a href="/product/{{ product.product_id.id }}" class="product-name">{{ product.product_id.name }}</a></h5>
+
+				{% if product.product_id.discount != 0 %}
+				<p class="price">₹{{ product.product_id.price }}</p>
+				<p class="discount">
+					<span class="hprice">You save: </span>
+					<span class="discount">₹{{ product.product_id.discount_amt }} &nbsp;({{ product.product_id.discount }}%)</span>
+				</p>
+				{% endif %}
+
+				<a href="/delete_from_cart/{{ product.product_id.id }}">Delete</a>
+			</div>
+		</div>
+
+		<div class="fprice">
+			Price: <span class="fprice">₹{{ product.product_id.final_price }}</span>
+		</div>
+		<hr>
+		{% endfor %}
+
+		<div class="tprice">
+			Total Price: <h5 class="tprice">{{ total_price }}</h5>
+		</div>
+
+		<div class="checkout">
+			<button type="button" class="btn btn-danger rm-shadow">Proceed to checkout</button>
+		</div>
+	</div>
+
+	{% else %}
+	<div class="alert alert-secondary no-result" role="alert">
+		Your cart is empty.
+	</div>
+	{% endif %}
+{% endblock %}

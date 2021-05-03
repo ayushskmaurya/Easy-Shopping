@@ -83,6 +83,21 @@ def product(request, product_id):
 	return render(request, 'product.html', data)
 
 
+# Retrieving products in cart.
+def cart(request):
+	if is_logged_in(request):
+		data = logged_in_info(request)
+		data['cart'] = Cart.objects.filter(user_id=request.session['userid'])
+		data['total_price'] = 0
+		for obj in data['cart']:
+			product = obj.product_id
+			product.discount_amt = (product.discount * product.price) / 100
+			product.final_price = product.price - product.discount_amt
+			data['total_price'] += product.final_price
+		return render(request, 'cart.html', data)
+	return redirect("/")
+
+
 # Adding product to the cart.
 def add_to_cart(request, product_id):
 	try:
@@ -94,6 +109,19 @@ def add_to_cart(request, product_id):
 	except:
 		pass
 	return redirect("/product/{0}".format(product_id))
+
+
+# Deleting product to the cart.
+def delete_from_cart(request, product_id):
+	try:
+		product = Product.objects.get(pk=product_id)
+		user = OnlineShopUser.objects.get(pk=request.session['userid'])
+		cart_obj = Cart.objects.filter(product_id=product.id, user_id=request.session['userid'])
+		if cart_obj.exists():
+			cart_obj.delete()
+	except:
+		pass
+	return redirect("/cart")
 
 
 # Adding product to the wishlist.

@@ -4,28 +4,12 @@ function search(n) {
 		location.href = "/search/" + query;
 }
 
-// Checking wether user is logged in.
-function is_logged_in() {
+// Redirecting to the path if user is logged in.
+function redirect_if_logged_in(path) {
 	let isLoggedIn = document.getElementById("is-logged-in").innerHTML;
 	if(isLoggedIn == "1")
-		return true;
-	return false;
-}
-
-// Adding product to the cart.
-function add_to_cart(product_id) {
-	if(is_logged_in())
-		location.href = "/add_to_cart/" + product_id;
-	else
-		document.getElementById("login").click();
-}
-
-// Adding product to the wishlist.
-function add_to_wishlist(product_id) {
-	if(is_logged_in())
-		location.href = "/add_to_wishlist/" + product_id;
-	else
-		document.getElementById("login").click();
+		location.href = path;
+	document.getElementById("login").click();
 }
 
 // Show error message if occured
