@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.hashers import make_password, check_password
 from itertools import chain
-from .models import Category, Product, OnlineShopUser, Cart, Wishlist
+from .models import Category, Product, OnlineShopUser, Cart, Wishlist, Order
 
 # Create your views here.
 
@@ -30,6 +30,14 @@ def logged_in_info(request):
 def index(request):
 	data = logged_in_info(request)
 	data['categories'] = Category.objects.all().order_by('name')
+
+	try:
+		if request.session['success_msg']:
+			data['success_msg'] = request.session['success_msg']
+			del request.session['success_msg']
+	except KeyError:
+		pass
+
 	return render(request, 'index.html', data)
 	
 
@@ -111,7 +119,7 @@ def add_to_cart(request, product_id):
 	return redirect("/product/{0}".format(product_id))
 
 
-# Deleting product to the cart.
+# Deleting product from the cart.
 def delete_from_cart(request, product_id):
 	try:
 		product = Product.objects.get(pk=product_id)
@@ -122,6 +130,38 @@ def delete_from_cart(request, product_id):
 	except:
 		pass
 	return redirect("/cart")
+
+
+# Placing Order.
+def checkout(request):
+	if is_logged_in(request):
+		if request.method == 'POST':
+			add = request.POST['address'].strip()
+			if len(add) > 0:
+				user = OnlineShopUser.objects.get(pk=request.session['userid'])
+				cart = Cart.objects.filter(user_id=request.session['userid'])
+				
+				for product in cart:
+					product_name = product.product_id.name
+					price = product.product_id.price
+					order = Order(user_id=user, product_name=product_name, price=price, address=add)
+					order.save()
+					product.delete()
+				user.address = add
+				user.save()
+				request.session['success_msg'] = "Your order has been placed successfully."
+
+		data = logged_in_info(request)
+		data['cart'] = Cart.objects.filter(user_id=request.session['userid'])
+		data['total_price'] = 0
+		for obj in data['cart']:
+			product = obj.product_id
+			product.final_price = product.price - ((product.discount * product.price) / 100)
+			data['total_price'] += product.final_price
+		if len(data['cart']) != 0:
+			data['address'] = OnlineShopUser.objects.get(pk=request.session['userid']).address
+			return render(request, 'checkout.html', data)
+	return redirect("/")
 
 
 # Adding product to the wishlist.

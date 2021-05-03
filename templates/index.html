@@ -7,6 +7,15 @@
 {% endblock %}
 
 {% block body %}
+
+	<!-- Success Message -->
+	{% if success_msg %}	
+	<div class="alert alert-success alert-dismissible fade show success_msg" role="alert">
+		{{ success_msg }}
+		<button type="button" class="btn-close rm-shadow" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+	{% endif %}
+
 	{% if categories|length != 0 %}
 	<div class="categories">
 		{% for category in categories %}

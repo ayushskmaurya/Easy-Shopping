@@ -1,3 +1,13 @@
+.rm-shadow:focus {
+	box-shadow: none;
+}
+
+div.success_msg {
+	width: 90%;
+	margin: auto;
+	margin-top: 20px;
+}
+
 div.categories {
 	display: flex;
 	flex-wrap: wrap;

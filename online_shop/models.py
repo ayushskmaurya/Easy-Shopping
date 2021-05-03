@@ -39,3 +39,10 @@ class Cart(models.Model):
 class Wishlist(models.Model):
 	product_id = models.ForeignKey(Product, on_delete=models.CASCADE, null=False)
 	user_id = models.ForeignKey(OnlineShopUser, on_delete=models.CASCADE, null=False)
+
+
+class Order(models.Model):
+	user_id = models.ForeignKey(OnlineShopUser, on_delete=models.CASCADE, null=False)
+	product_name = models.CharField(max_length=100, null=False)
+	price = models.IntegerField(null=False)
+	address = models.TextField(null=False)
